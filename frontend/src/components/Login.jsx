@@ -84,7 +84,7 @@ const Login = () => {
 						<a href="#" className="relative text-[#63C3D1] text-sm-center font-medium">
 							He olvidado mi contraseña</a>
 					</div>
-					<ButtonCustom text="Inicia sesión" />
+						<ButtonCustom text="Inicia sesión" />
 				</form>
 
 				<div className="flex items-center my-4">

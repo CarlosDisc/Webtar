@@ -1,4 +1,6 @@
 import React from "react";
+import ButtonDefault from "../Buttons/ButtonDefault";
+import ButtonCustom from "../Buttons/ButtonCustom";
 
 const StepOne = ({ cardData, onNext, onChange }) => {
     const handleFileChange = (e, field) => {
@@ -9,25 +11,41 @@ const StepOne = ({ cardData, onNext, onChange }) => {
     return (
         <div className="space-y-4">
             <div>
-                <label className="block font-medium mb-2">Subir Logo</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => handleFileChange(e, "logo")}
-                />
-                {cardData.logo && (
-                    <img
-                        src={URL.createObjectURL(cardData.logo)}
-                        alt="Logo Preview"
-                        className="w-24 h-24 object-cover mt-2 rounded"
+                <div className="">
+                    <label className="block font-medium mb-2">Subir Logo</label>
+                    <div className="w-50">
+                        <ButtonDefault
+                            text="Seleccionar Logo"
+                            onClick={() => document.getElementById("file-input-logo").click()}
+                        />
+                    </div>
+                    <input
+                        type="file"
+                        id="file-input-logo"
+                        accept="image/*"
+                        onChange={(e) => handleFileChange(e, "logo")}
+                        className="hidden"
                     />
-                )}
+                    {cardData.logo && (
+                        <img
+                            src={URL.createObjectURL(cardData.logo)}
+                            alt="Logo Preview"
+                            className="w-24 h-24 object-cover mt-2 rounded"
+                        />
+                    )}</div>
             </div>
 
             <div>
                 <label className="block font-medium mb-2">Subir Imagen de Fondo</label>
+                <div className="w-50">
+                    <ButtonDefault
+                        text="Seleccionar Fondo"
+                        onClick={() => document.getElementById("file-input-background").click()}
+                    />
+                </div>
                 <input
                     type="file"
+                    id="file-input-background"
                     accept="image/*"
                     onChange={(e) => handleFileChange(e, "background")}
                 />
@@ -35,17 +53,17 @@ const StepOne = ({ cardData, onNext, onChange }) => {
                     <img
                         src={URL.createObjectURL(cardData.background)}
                         alt="Fondo Preview"
-                        className="w-full h-32 object-cover mt-2 rounded"
+                        className="object-cover mt-2 rounded"
+                        style={{ aspectRatio: '9 / 5', width: '100%' }}
                     />
                 )}
             </div>
 
-            <button
-                onClick={onNext}
-                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-            >
-                Siguiente
-            </button>
+            <div className="mt-4 py-2 w-50">
+                <ButtonCustom
+                    text="Siguiente"
+                    onClick={onNext} />
+            </div>
         </div>
     );
 };
